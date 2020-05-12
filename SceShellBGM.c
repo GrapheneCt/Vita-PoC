@@ -29,19 +29,18 @@ typedef struct SceShellSvcCustomAudioSubParams2 {
 } SceShellSvcCustomAudioSubParams2;
 
 typedef struct SceShellSvcCustomAudioParams {
-	int unk_00; 		// not used (set to 0)
 	void* params1;  	// optional params1
 	SceSize params1Size; 	// size of optional params1
 	void* params2; 		// optional params2, ex. path to audio file
 	SceSize params2Size;	// size of optional params2
 	void* params3;		// optional params3
 	SceSize params3Size;	// size of optional params3
-} SceShellSvcCustomAudioParams;
+} SceShellSvcAudioCustomParams;
 
-typedef struct SceShellSvcAudioParams {
-	SceShellSvcCustomAudioParams* audioParams;
-	int audioType;
-} SceShellSvcAudioParams;
+typedef struct SceShellSvcAudioSoundParams {
+	int soundParam; // usually 0
+	int soundType;  // usually 0
+} SceShellSvcAudioSoundParams;
 
 typedef struct SceShellSvcTable {
 	void *pFunc_0x00;
@@ -49,7 +48,7 @@ typedef struct SceShellSvcTable {
 	void *pFunc_0x08;
 	void *pFunc_0x0C;
 	void *pFunc_0x10;
-	int(*sceShellSvcAudioControl)(void *obj, int flag, void* a3, int a4_flag, SceShellSvcAudioParams*, void *a6, int a7);
+	int(*sceShellSvcAudioControl)(void *obj, int flag, SceShellSvcAudioCustomParams*, int a4_flag, SceShellSvcAudioSoundParams*, void *a6, int a7);
 	void *pFunc_0x18;
 	int(*sceShellSvcAsyncMethod)(void *obj, int asyncMethodId /* more args here */);
 
@@ -58,12 +57,6 @@ typedef struct SceShellSvcTable {
 
 extern int sceAppMgrSetBgmProxyApp(const char*);
 extern void* SceShellSvc_B31E7F1C(void); //SceShellSvcGetTable
-
-static int init_step_1 = 0;
-static int init_step_2 = 0;
-
-static int global_1 = 0;
-static int global_2 = 0;
 
 void bgmStop(void)
 {
@@ -75,22 +68,15 @@ void bgmStop(void)
 	str1.unk_04 = 0;
 	str1.unk_08 = 0;
 
-	SceShellSvcCustomAudioParams strmain;
-	strmain.unk_00 = 0;
-	strmain.params1 = &str1;
-	strmain.params1Size = 0xC;
+	SceShellSvcAudioCustomParams mainParams;
+	mainParams.params1 = &str1;
+	mainParams.params1Size = 0xC;
 
-	SceShellSvcAudioParams audio;
-	audio.audioParams = &strmain;
-	audio.audioType = 0;
+	SceShellSvcAudioSoundParams soundParams;
+	soundParams.audioParams = 0;
+	soundParams.audioType = 0;
 
-	int ret = ((SceShellSvcTable *)(*(uint32_t *)tptr))->sceShellSvcAudioControl(tptr, 0xD0000, &str1, 1, &audio, 0, 0);
-
-	global_1 = str1.unk_04;
-	global_2 = str1.unk_08;
-
-	init_step_1 = 1;
-	init_step_2 = 0;
+	int ret = ((SceShellSvcTable *)(*(uint32_t *)tptr))->sceShellSvcAudioControl(tptr, 0xD0000, &mainParams, 1, &soundParams, 0, 0);
 
 	sceClibPrintf("bgmStop: 0x%08x\n", ret);
 }
@@ -103,8 +89,8 @@ void bgmStart1(void)
 
 	SceShellSvcCustomAudioSubParams1 str1;
 	str1.unk_00 = 0;
-	str1.unk_04 = global_1;
-	str1.unk_08 = global_2;
+	str1.unk_04 = 0;
+	str1.unk_08 = 0;
 
 	SceShellSvcCustomAudioSubParams2 str2;
 	str2.audioPathPtr = &path;
@@ -112,20 +98,19 @@ void bgmStart1(void)
 	str2.unk_08 = 0;
 	str2.unk_0C = 0;
 
-	SceShellSvcCustomAudioParams strmain;
-	strmain.unk_00 = 0;
-	strmain.params1 = &str1;
-	strmain.params1Size = 0xC;
-	strmain.params2 = &path;
-	strmain.params2Size = 27;
-	strmain.params3 = &str2;
-	strmain.params3Size = 0x10;
+	SceShellSvcAudioCustomParams mainParams;
+	mainParams.params1 = &str1;
+	mainParams.params1Size = 0xC;
+	mainParams.params2 = &path;
+	mainParams.params2Size = 27;
+	mainParams.params3 = &str2;
+	mainParams.params3Size = 0x10;
 
-	SceShellSvcAudioParams audio;
-	audio.audioParams = &strmain;
-	audio.audioType = 0;
+	SceShellSvcAudioSoundParams soundParams;
+	soundParams.audioParams = 0;
+	soundParams.audioType = 0;
 
-	int ret = ((SceShellSvcTable *)(*(uint32_t *)tptr))->sceShellSvcAudioControl(tptr, 0xD0002, &strmain.params1, 3, &audio, 0, 0);
+	int ret = ((SceShellSvcTable *)(*(uint32_t *)tptr))->sceShellSvcAudioControl(tptr, 0xD0002, &mainParams, 3, &soundParams, 0, 0);
 
 	sceClibPrintf("bgmStart1: 0x%08x\n", ret);
 }
@@ -139,20 +124,19 @@ void bgmStart2(void)
 	str1.unk_04 = global_1;
 	str1.unk_08 = global_2;
 
-	SceShellSvcCustomAudioParams strmain;
-	strmain.unk_00 = 0;
-	strmain.params1 = NULL;
-	strmain.params1Size = 0;
-	strmain.params2 = &strmain.params1;
-	strmain.params2Size = 8;
-	strmain.params3 = &str1;
-	strmain.params3Size = 0x0C;
+	SceShellSvcAudioCustomParams mainParams;
+	mainParams.params1 = NULL;
+	mainParams.params1Size = 0;
+	mainParams.params2 = &strmain.params1;
+	mainParams.params2Size = 8;
+	mainParams.params3 = &str1;
+	mainParams.params3Size = 0x0C;
 
-	SceShellSvcAudioParams audio;
-	audio.audioParams = &strmain;
-	audio.audioType = 0;
+	SceShellSvcAudioSoundParams soundParams;
+	soundParams.audioParams = 0;
+	soundParams.audioType = 0;
 
-	int ret = ((SceShellSvcTable *)(*(uint32_t *)tptr))->sceShellSvcAudioControl(tptr, 0xD0004, &strmain.params1, 2, &audio, 0, 0);
+	int ret = ((SceShellSvcTable *)(*(uint32_t *)tptr))->sceShellSvcAudioControl(tptr, 0xD0004, &mainParams, 2, &soundParams, 0, 0);
 
 	sceClibPrintf("bgmStart2: 0x%08x\n", ret);
 }
