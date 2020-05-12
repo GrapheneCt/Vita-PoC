@@ -73,8 +73,8 @@ void bgmStop(void)
 	mainParams.params1Size = 0xC;
 
 	SceShellSvcAudioSoundParams soundParams;
-	soundParams.audioParams = 0;
-	soundParams.audioType = 0;
+	soundParams.soundParam = 0;
+	soundParams.soundType = 0;
 
 	int ret = ((SceShellSvcTable *)(*(uint32_t *)tptr))->sceShellSvcAudioControl(tptr, 0xD0000, &mainParams, 1, &soundParams, 0, 0);
 
@@ -107,8 +107,8 @@ void bgmStart1(void)
 	mainParams.params3Size = 0x10;
 
 	SceShellSvcAudioSoundParams soundParams;
-	soundParams.audioParams = 0;
-	soundParams.audioType = 0;
+	soundParams.soundParam = 0;
+	soundParams.soundType = 0;
 
 	int ret = ((SceShellSvcTable *)(*(uint32_t *)tptr))->sceShellSvcAudioControl(tptr, 0xD0002, &mainParams, 3, &soundParams, 0, 0);
 
@@ -133,8 +133,8 @@ void bgmStart2(void)
 	mainParams.params3Size = 0x0C;
 
 	SceShellSvcAudioSoundParams soundParams;
-	soundParams.audioParams = 0;
-	soundParams.audioType = 0;
+	soundParams.soundParam = 0;
+	soundParams.soundType = 0;
 
 	int ret = ((SceShellSvcTable *)(*(uint32_t *)tptr))->sceShellSvcAudioControl(tptr, 0xD0004, &mainParams, 2, &soundParams, 0, 0);
 
