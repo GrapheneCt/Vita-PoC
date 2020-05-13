@@ -1,4 +1,3 @@
-﻿#include <stdbool.h>
 #include <psp2/kernel/modulemgr.h> 
 #include <psp2/kernel/threadmgr.h> 
 #include <psp2/appmgr.h> 
@@ -325,7 +324,7 @@ end:
 	return ret;
 }
 
-void _start(unsigned int args, void *argp)
+int main(void)
 {
 	int ret;
 
@@ -351,5 +350,6 @@ void _start(unsigned int args, void *argp)
 		sceKernelDelayThread(1000);
 	}
 
+	return 0;
 }
 
