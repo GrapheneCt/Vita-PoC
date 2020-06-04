@@ -31,7 +31,7 @@ typedef enum SceIncomingDialogStatus {
 /**
  * Errors
  */
-#define SCE_NOTIFICATIONUTIL_ERROR_INTERNAL               0x80106301;
+#define SCE_INCOMINGDIALOG_ERROR_INVALID_ARG               0x80106202;
 
 /**
  * BGDL-type notification event handler function
