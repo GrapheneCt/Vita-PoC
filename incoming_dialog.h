@@ -94,4 +94,4 @@ void sceIncomingDialogParamInit(SceIncomingDialogParam* dialogParam)
 }
 #endif /* __cplusplus */
 
-#endif /* _DOLCESDK_PSP2_NOTIFICATIONUTIL_H_ */
+#endif /* _DOLCESDK_PSP2_INCOMINGDIALOG_H_ */
