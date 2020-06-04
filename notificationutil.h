@@ -23,26 +23,26 @@ extern "C" {
  */
 typedef void(*SceNotificationUtilProgressEventHandler)(int eventId);
 
-typedef struct SceNotificationUtilProgressInitParams {
+typedef struct SceNotificationUtilProgressInitParam {
 	SceWChar16 notificationText[0x273];
 	short separator0; //must be 0
 	SceNotificationUtilProgressEventHandler eventHandler;
 	int unk_4EC; //can be set to 0
 	SceWChar16 cancelDialogText[0x3E];
 	short separator1; //must be 0
-} SceNotificationUtilProgressInitParams;
+} SceNotificationUtilProgressInitParam;
 
-typedef struct SceNotificationUtilProgressUpdateParams {
+typedef struct SceNotificationUtilProgressUpdateParam {
 	SceWChar16 notificationText[0x7E];
 	short separator0; //must be 0
 	float targetProgress;
 	char reserved[0x3C];
-} SceNotificationUtilProgressUpdateParams;
+} SceNotificationUtilProgressUpdateParam;
 
-typedef struct SceNotificationUtilProgressFinishParams {
+typedef struct SceNotificationUtilProgressFinishParam {
 	SceWChar16 notificationText[0x273];
 	short separator0; //must be 0
-} SceNotificationUtilProgressFinishParams;
+} SceNotificationUtilProgressFinishParam;
 
 /**
  * Initialize notification util for use with BG application.
@@ -66,17 +66,17 @@ SceInt32 SceNotificationUtilCleanHistory(void); // SceNotificationUtil_B0FFFB7B
 /**
  * Start BGDL-type notification.
  */
-SceInt32 sceNotificationUtilProgressBegin(SceNotificationUtilProgressInitParams* initParams); // SceNotificationUtilProgress_FD0769B0 
+SceInt32 sceNotificationUtilProgressBegin(SceNotificationUtilProgressInitParam* initParams); // SceNotificationUtilProgress_FD0769B0 
 
 /**
  * Update BGDL-type notification.
  */
-SceInt32 sceNotificationUtilProgressUpdate(SceNotificationUtilProgressUpdateParams* updateParams); // SceNotificationUtilProgress_D9890A65
+SceInt32 sceNotificationUtilProgressUpdate(SceNotificationUtilProgressUpdateParam* updateParams); // SceNotificationUtilProgress_D9890A65
 
 /**
  * Finish BGDL-type notification.
  */
-SceInt32 sceNotificationUtilProgressFinish(SceNotificationUtilProgressFinishParams* finishParams); // SceNotificationUtilProgress_8CD688A1
+SceInt32 sceNotificationUtilProgressFinish(SceNotificationUtilProgressFinishParam* finishParams); // SceNotificationUtilProgress_8CD688A1
 
 #ifdef __cplusplus
 }
