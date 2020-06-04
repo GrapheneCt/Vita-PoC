@@ -33,11 +33,6 @@ typedef enum SceIncomingDialogStatus {
  */
 #define SCE_INCOMINGDIALOG_ERROR_INVALID_ARG               0x80106202;
 
-/**
- * BGDL-type notification event handler function
- */
-typedef void(*SceNotificationUtilProgressEventHandler)(int eventId);
-
 typedef struct SceIncomingDialogParam {
 	int sdkVersion;
 	char titleid[0x10];					//TitleId of the application to open when "accept" button has been pressed. Can be NULL
