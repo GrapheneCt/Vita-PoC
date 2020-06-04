@@ -35,17 +35,17 @@ typedef enum SceIncomingDialogStatus {
 
 typedef struct SceIncomingDialogParam {
 	int sdkVersion;
-	char titleid[0x10];					//TitleId of the application to open when "accept" button has been pressed. Can be NULL
-	char audioPath[0x80];				//Path to audio file that will be played during dialog, .mp3, .at9, m4a. Can be NULL
-	unsigned int dialogTimer;			//Time to show dialog in seconds
-	int unk_BC;							//Can be set to 0
+	char titleid[0x10];			//TitleId of the application to open when "accept" button has been pressed. Can be NULL
+	char audioPath[0x80];			//Path to audio file that will be played during dialog, .mp3, .at9, m4a. Can be NULL
+	unsigned int dialogTimer;		//Time to show dialog in seconds
+	int unk_BC;				//Can be set to 0
 	char reserved1[0x3E];
 	SceWChar16 buttonRightText[0x1F];	//Text for "accept" button
-	short separator0;					//must be 0
+	short separator0;			//must be 0
 	SceWChar16 buttonLeftText[0x1F];	//Text for "reject" button. If NULL, only "accept" button will be created
-	short separator1;					//must be 0
+	short separator1;			//must be 0
 	SceWChar16 dialogWindowText[0x80];	//Text for dialog window, also shared with notification
-	short separator2;					//must be 0
+	short separator2;			//must be 0
 } SceIncomingDialogParam;
 
 /**
