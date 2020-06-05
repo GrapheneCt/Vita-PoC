@@ -49,19 +49,19 @@ typedef struct SceNotificationUtilProgressFinishParam {
  *
  * Does not need to be called for normal applications.
  */
-SceInt32 SceNotificationUtilInitializeForBgApp(void); // SceNotificationUtilBgApp_CBE814C1
+SceInt32 sceNotificationUtilInitializeForBgApp(void); // SceNotificationUtilBgApp_CBE814C1
 
 /**
  * Send notification.
  *
  * Text buffer size must be 0x470.
  */
-SceInt32 SceNotificationUtilSendNotification(const SceWChar16* text); // SceNotificationUtil_DE6F33F4
+SceInt32 sceNotificationUtilSendNotification(const SceWChar16* text); // SceNotificationUtil_DE6F33F4
 
 /**
  * Clean notifications for calling app from notification history.
  */
-SceInt32 SceNotificationUtilCleanHistory(void); // SceNotificationUtil_B0FFFB7B
+SceInt32 sceNotificationUtilCleanHistory(void); // SceNotificationUtil_B0FFFB7B
 
 /**
  * Start BGDL-type notification.
