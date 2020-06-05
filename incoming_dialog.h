@@ -51,32 +51,32 @@ typedef struct SceIncomingDialogParam {
 /**
  * Initialize incoming dialog library, init_type must be 0.
  */
-SceInt32 SceIncomingDialogInitialize(int init_type); // SceIncomingDialog_18AF99EB
+SceInt32 sceIncomingDialogInitialize(int init_type); // SceIncomingDialog_18AF99EB
 
 /**
  * Open incoming dialog.
  */
-SceInt32 SceIncomingDialogOpen(SceIncomingDialogParam* dialogParam); // SceIncomingDialog_2BEDC1A0
+SceInt32 sceIncomingDialogOpen(SceIncomingDialogParam* dialogParam); // SceIncomingDialog_2BEDC1A0
 
 /**
  * Returns current status of incoming dialog.
  */
-SceInt32 SceIncomingDialogGetStatus(void); // SceIncomingDialog_839DE14C
+SceInt32 sceIncomingDialogGetStatus(void); // SceIncomingDialog_839DE14C
 
 /**
  * Force exit to LiveArea and show dialog window
  */
-SceInt32 SceIncomingDialogSwitchToDialog(void); // SceIncomingDialog_0123B83A
+SceInt32 sceIncomingDialogSwitchToDialog(void); // SceIncomingDialog_0123B83A
 
 /**
  * Close incoming dialog.
  */
-SceInt32 SceIncomingDialogClose(void); // SceIncomingDialog_126BD15E
+SceInt32 sceIncomingDialogClose(void); // SceIncomingDialog_126BD15E
 
 /**
  * Finish incoming dialog library
  */
-SceInt32 SceIncomingDialogFinish(void); // SceIncomingDialog_860B1885
+SceInt32 sceIncomingDialogFinish(void); // SceIncomingDialog_860B1885
 
 static inline
 void sceIncomingDialogParamInit(SceIncomingDialogParam* dialogParam)
