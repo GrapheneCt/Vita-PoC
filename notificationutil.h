@@ -30,7 +30,7 @@ typedef struct SceNotificationUtilProgressInitParam {
 	SceInt16 separator1;						//must be 0
 	SceChar8 unk[0x3E6];
 	SceNotificationUtilProgressEventHandler eventHandler;
-	SceInt32 unk_4EC;							//can be set to 0
+	SceInt32 unk_4EC;						//can be set to 0
 	SceWChar16 cancelDialogText[0x3F];
 	SceInt16 separator2;						//must be 0
 } SceNotificationUtilProgressInitParam;
@@ -57,34 +57,34 @@ typedef struct SceNotificationUtilProgressFinishParam {
  *
  * Does not need to be called for normal applications.
  */
-SceInt32 sceNotificationUtilInitializeForBgApp(void); // SceNotificationUtilBgApp_CBE814C1
+SceInt32 sceNotificationUtilInitializeForBgApp(void);
 
 /**
  * Send notification.
  *
  * Text buffer size must be 0x470.
  */
-SceInt32 sceNotificationUtilSendNotification(const SceWChar16* text); // SceNotificationUtil_DE6F33F4
+SceInt32 sceNotificationUtilSendNotification(const SceWChar16* text);
 
 /**
  * Clean notifications for calling app from notification history.
  */
-SceInt32 sceNotificationUtilCleanHistory(void); // SceNotificationUtil_B0FFFB7B
+SceInt32 sceNotificationUtilCleanHistory(void);
 
 /**
  * Start BGDL-type notification.
  */
-SceInt32 sceNotificationUtilProgressBegin(SceNotificationUtilProgressInitParam* initParams); // SceNotificationUtilProgress_FD0769B0 
+SceInt32 sceNotificationUtilProgressBegin(SceNotificationUtilProgressInitParam* initParams);
 
 /**
  * Update BGDL-type notification.
  */
-SceInt32 sceNotificationUtilProgressUpdate(SceNotificationUtilProgressUpdateParam* updateParams); // SceNotificationUtilProgress_D9890A65
+SceInt32 sceNotificationUtilProgressUpdate(SceNotificationUtilProgressUpdateParam* updateParams);
 
 /**
  * Finish BGDL-type notification.
  */
-SceInt32 sceNotificationUtilProgressFinish(SceNotificationUtilProgressFinishParam* finishParams); // SceNotificationUtilProgress_8CD688A1
+SceInt32 sceNotificationUtilProgressFinish(SceNotificationUtilProgressFinishParam* finishParams);
 
 #ifdef __cplusplus
 }
