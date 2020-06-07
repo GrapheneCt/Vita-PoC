@@ -34,18 +34,18 @@ typedef enum SceIncomingDialogStatus {
 #define SCE_INCOMINGDIALOG_ERROR_INVALID_ARG               0x80106202;
 
 typedef struct SceIncomingDialogParam {
-	int sdkVersion;
-	char titleid[0x10];			//TitleId of the application to open when "accept" button has been pressed. Can be NULL
-	char audioPath[0x80];			//Path to audio file that will be played during dialog, .mp3, .at9, m4a. Can be NULL
-	unsigned int dialogTimer;		//Time to show dialog in seconds
-	int unk_BC;				//Can be set to 0
-	char reserved1[0x3E];
+	SceInt32 sdkVersion;
+	SceChar8 titleid[0x10];				//TitleId of the application to open when "accept" button has been pressed. Can be NULL
+	SceChar8 audioPath[0x80];			//Path to audio file that will be played during dialog, .mp3, .at9, m4a. Can be NULL
+	SceUInt32 dialogTimer;				//Time to show dialog in seconds
+	SceInt32 unk_BC;					//Can be set to 0
+	SceChar8 reserved1[0x3E];
 	SceWChar16 buttonRightText[0x1F];	//Text for "accept" button
-	short separator0;			//must be 0
+	SceInt16 separator0;				//must be 0
 	SceWChar16 buttonLeftText[0x1F];	//Text for "reject" button. If NULL, only "accept" button will be created
-	short separator1;			//must be 0
-	SceWChar16 dialogWindowText[0x80];	//Text for dialog window, also shared with notification
-	short separator2;			//must be 0
+	SceInt16 separator1;				//must be 0
+	SceWChar16 dialogText[0x80];		//Text for dialog window, also shared with notification
+	SceInt16 separator2;				//must be 0
 } SceIncomingDialogParam;
 
 /**

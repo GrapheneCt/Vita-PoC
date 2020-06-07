@@ -24,30 +24,32 @@ extern "C" {
 typedef void(*SceNotificationUtilProgressEventHandler)(int eventId);
 
 typedef struct SceNotificationUtilProgressInitParam {
-	SceWChar16 notificationText[0x3E];
-	short separator0; //must be 0
-	SceWChar16 notificationSubText[0x3E];
-	short separator1; //must be 0
+	SceWChar16 notificationText[0x3F];
+	SceInt16 separator0;						//must be 0
+	SceWChar16 notificationSubText[0x3F];
+	SceInt16 separator1;						//must be 0
+	SceChar8 unk[0x3E6];
 	SceNotificationUtilProgressEventHandler eventHandler;
-	int unk_4EC; //can be set to 0
-	SceWChar16 cancelDialogText[0x3E];
-	short separator2; //must be 0
+	SceInt32 unk_4EC;							//can be set to 0
+	SceWChar16 cancelDialogText[0x3F];
+	SceInt16 separator2;						//must be 0
 } SceNotificationUtilProgressInitParam;
 
 typedef struct SceNotificationUtilProgressUpdateParam {
-	SceWChar16 notificationText[0x3E];
-	short separator0; //must be 0
-	SceWChar16 notificationSubText[0x3E];
-	short separator1; //must be 0
-	float targetProgress;
-	char reserved[0x3C];
+	SceWChar16 notificationText[0x3F];
+	SceInt16 separator0;						//must be 0
+	SceWChar16 notificationSubText[0x3F];
+	SceInt16 separator1;						//must be 0
+	SceFloat targetProgress;
+	SceChar8 reserved[0x38];
 } SceNotificationUtilProgressUpdateParam;
 
 typedef struct SceNotificationUtilProgressFinishParam {
-	SceWChar16 notificationText[0x3E];
-	short separator0; //must be 0
-	SceWChar16 notificationSubText[0x3E];
-	short separator1; //must be 0
+	SceWChar16 notificationText[0x3F];
+	SceInt16 separator0;						//must be 0
+	SceWChar16 notificationSubText[0x3F];
+	SceInt16 separator1;						//must be 0
+	SceChar8 path[0x3E8];
 } SceNotificationUtilProgressFinishParam;
 
 /**
