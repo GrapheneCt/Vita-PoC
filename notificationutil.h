@@ -57,7 +57,7 @@ typedef struct SceNotificationUtilProgressFinishParam {
  *
  * Does not need to be called for normal applications.
  */
-SceInt32 sceNotificationUtilInitializeForBgApp(void);
+SceInt32 sceNotificationUtilBgAppInitialize(void);
 
 /**
  * Send notification.
