@@ -5,3 +5,4 @@
 - SceNotificationUtil
 - SceIncomingDialog
 - SceJpegArm
+- SceTriggerUtil
