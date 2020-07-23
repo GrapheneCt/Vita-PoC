@@ -3,8 +3,6 @@
 #include <psp2/gxm.h>
 #include <taihen.h>
 
-#include "transfer.h"
-
 static volatile SceUInt32 *state;
 
 void PTLAInitialize(void)
