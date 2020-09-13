@@ -81,6 +81,18 @@ void sceIniFileProcessorInitializeParam2(SceIniFileProcessorParam* param); //Sce
 int sceIniFileProcessorCreateInstance(void* context, SceIniFileProcessorParam* param); //SceIniFileProcessor_0975D396
 
 /**
+ * Open INI memory
+ *
+ * @param[in] context - context buffer
+ * @param[in] pMem - memery where INI data is stored
+ * @param[in] memSize - size of the INI data
+ *
+ * @return 0 on success, < 0 on error.
+ *
+ */
+int sceIniFileProcessorOpenMemory(void* context, void* pMem, SceSize memSize); //SceIniFileProcessor_B785FE67
+
+/**
  * Open INI file
  *
  * @param[in] context - context buffer
