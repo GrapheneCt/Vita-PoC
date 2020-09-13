@@ -6,3 +6,4 @@
 - SceIncomingDialog
 - SceJpegArm
 - SceTriggerUtil
+- SceBgAppUtil
