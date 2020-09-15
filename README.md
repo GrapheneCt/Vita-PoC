@@ -7,3 +7,4 @@
 - SceJpegArm
 - SceTriggerUtil
 - SceBgAppUtil
+- SceIniFileProcessor
