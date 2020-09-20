@@ -16,7 +16,7 @@ extern "C" {
 /**
  * Errors
  */
-#define SCE_NOTIFICATIONUTIL_ERROR_INTERNAL               0x80106301;
+#define SCE_NOTIFICATIONUTIL_ERROR_INTERNAL               0x80106300;
 
 /**
  * BGDL-type notification event handler function
@@ -29,10 +29,8 @@ typedef struct SceNotificationUtilProgressInitParam {
 	SceWChar16 notificationSubText[0x3F];
 	SceInt16 separator1;						//must be 0
 	SceChar8 unk[0x3E6];
-	SceNotificationUtilProgressEventHandler eventHandler;
 	SceInt32 unk_4EC;						//can be set to 0
-	SceWChar16 cancelDialogText[0x3F];
-	SceInt16 separator2;						//must be 0
+	SceNotificationUtilProgressEventHandler eventHandler;
 } SceNotificationUtilProgressInitParam;
 
 typedef struct SceNotificationUtilProgressUpdateParam {
@@ -62,7 +60,7 @@ SceInt32 sceNotificationUtilBgAppInitialize(void);
 /**
  * Send notification.
  *
- * Text buffer size must be 0x470.
+ * Text buffer size must be 0x410.
  */
 SceInt32 sceNotificationUtilSendNotification(const SceWChar16* text);
 
