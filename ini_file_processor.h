@@ -15,11 +15,11 @@ extern "C" {
 /**
  * Errors
  */
-#define SCE_INI_FILE_PROCESSOR_ERROR_MODE              0x80840002
-#define SCE_INI_FILE_PROCESSOR_ERROR_EOF               0x80840005
-#define SCE_INI_FILE_PROCESSOR_ERROR_KEY_NOT_FOUND     0x80840010
+#define SCE_INI_FILE_PROCESSOR_ERROR_MODE              0x80840001
+#define SCE_INI_FILE_PROCESSOR_ERROR_EOF               0x80840004
+#define SCE_INI_FILE_PROCESSOR_ERROR_KEY_NOT_FOUND     0x80840011
 
-#define SCE_INI_FILE_PROCESSOR_PARSE_COMPLETED         0x00840001
+#define SCE_INI_FILE_PROCESSOR_PARSE_COMPLETED         0x00840002
 
 typedef void*(*SceIniFileProcessorAllocFunc)(SceSize size);
 
@@ -40,7 +40,7 @@ typedef struct SceIniFileProcessorParam {
 /**
  * Initialize INI file processor library
  *
- * @param[in] context - context buffer, size must be 8
+ * @param[in] context - context buffer, size must be 6
  *
  */
 void* sceIniFileProcessorCreateContext1(void* context); //SceIniFileProcessor_A0F71A2C
@@ -48,7 +48,7 @@ void* sceIniFileProcessorCreateContext1(void* context); //SceIniFileProcessor_A0
 /**
  * Initialize INI file processor library
  *
- * @param[in] context - context buffer, size must be 8
+ * @param[in] context - context buffer, size must be 6
  *
  */
 void* sceIniFileProcessorCreateContext2(void* context); //SceIniFileProcessor_746B194F
@@ -128,7 +128,7 @@ int sceIniFileProcessorCreateFile(void* context, const char* filePath, const cha
  * @return 0 on success, < 0 on error.
  *
  */
-int sceIniFileProcessorGetIniFileMemBlock(void* context, void** pMem, SceSize* outMemSize); //SceIniFileProcessor_109B4E83
+int sceIniFileProcessorGetIniFileMemBlock(void* context, void* pMem, SceSize* outMemSize); //SceIniFileProcessor_109B4E83
 
 /**
  * Parse key and corresponding value, one key per call until eof
@@ -297,7 +297,7 @@ void sceIniFileProcessorFinalize(void* context)
 /**
  * Initialize INI file processor library
  *
- * @param[in] context - context buffer, size must be 8
+ * @param[in] context - context buffer, size must be 6
  *
  */
 inline
