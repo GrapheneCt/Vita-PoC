@@ -14,12 +14,12 @@ extern "C" {
 /**
  * Errors
  */
-#define SCE_BGAPP_UTIL_ERROR_INVALID_ARG                       0x80106502
+#define SCE_BGAPP_UTIL_ERROR_INVALID_ARG                       0x80106501
 
 /**
  * Start BG application (eboot2.bin)
  *
- * @param[in] mode - must be 1
+ * @param[in] mode - must be 0
  *
  * @return 0 on success, <0 otherwise.
  */

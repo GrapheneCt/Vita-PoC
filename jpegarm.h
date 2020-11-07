@@ -57,26 +57,26 @@
 int sceJpegArmDecodeMJpeg(												// SceJpegArm_A4ABFCE3
 		const unsigned char *pJpeg,
 		SceSize isize,
-		int decodeMode,
 		void *pRGBA,
 		SceSize osize,
+		int decodeMode,
 		void *pCoefBuffer,
 		SceSize coefBufferSize);
 
 int sceJpegArmDecodeMJpegYCbCr(											// SceJpegArm_E9B1B86F
 		const unsigned char *pJpeg,
 		SceSize isize,
-		int decodeMode,
 		unsigned char *pYCbCr,
 		SceSize osize,
+		int decodeMode,
 		void *pCoefBuffer,
 		SceSize coefBufferSize);
 
 int sceJpegArmGetOutputInfo(											// 	SceJpegArm_23AE3BEA
 		const unsigned char *pJpeg,
 		SceSize isize,
-		int decodeMode,
 		int outputFormat,
+		int decodeMode,
 		SceJpegOutputInfo *pOutputInfo);
 
 /* split decoder (control struct is different from sceJpeg, no reference anywhere in the apps) */

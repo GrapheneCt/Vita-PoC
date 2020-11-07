@@ -20,25 +20,25 @@ extern "C" {
  */
 typedef enum SceIncomingDialogStatus {
 	SCE_INCOMING_DIALOG_NOT_RUNNING,
-	SCE_INCOMING_DIALOG_ACCEPTED,
+	SCE_INCOMING_DIALOG_BUSY,
 	SCE_INCOMING_DIALOG_RUNNING,
+	SCE_INCOMING_DIALOG_ACCEPTED,
 	SCE_INCOMING_DIALOG_REJECTED,
 	SCE_INCOMING_DIALOG_CLOSED,
-	SCE_INCOMING_DIALOG_BUSY,
 	SCE_INCOMING_DIALOG_TIMEOUT
 } SceIncomingDialogStatus;
 
 /**
  * Errors
  */
-#define SCE_INCOMINGDIALOG_ERROR_INVALID_ARG               0x80106201;
+#define SCE_INCOMINGDIALOG_ERROR_INVALID_ARG               0x80106202;
 
 typedef struct SceIncomingDialogParam {
 	SceInt32 sdkVersion;
-	SceChar8 audioPath[0x80];		//Path to audio file that will be played during dialog, .mp3, .at9, m4a. Can be NULL
 	SceChar8 titleid[0x10];			//TitleId of the application to open when "accept" button has been pressed. Can be NULL
-	SceInt32 unk_BC;			//Can be set to 0
+	SceChar8 audioPath[0x80];		//Path to audio file that will be played during dialog, .mp3, .at9, m4a. Can be NULL
 	SceUInt32 dialogTimer;			//Time to show dialog in seconds
+	SceInt32 unk_BC;			//Can be set to 0
 	SceChar8 reserved1[0x3E];
 	SceWChar16 buttonRightText[0x1F];	//Text for "accept" button
 	SceInt16 separator0;			//must be 0
@@ -49,7 +49,7 @@ typedef struct SceIncomingDialogParam {
 } SceIncomingDialogParam;
 
 /**
- * Initialize incoming dialog library, init_type must be 1.
+ * Initialize incoming dialog library, init_type must be 0.
  */
 SceInt32 sceIncomingDialogInitialize(int init_type); // SceIncomingDialog_18AF99EB
 

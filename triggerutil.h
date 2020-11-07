@@ -16,9 +16,9 @@ extern "C" {
 #endif
 
 // NOTE1: Last two params in all of the functions are never used, probably callbacks since all sceTriggerUtil functions are non-blocking
-// NOTE2: Max number of events (eventId) per application is 6
+// NOTE2: Max number of events (eventId) per application is 8
 
-#define SCE_TRIGGER_UTIL_VERSION						0x3200000
+#define SCE_TRIGGER_UTIL_VERSION						0x3100000
 
 /**
  * Days of the week for use in repeatDays member of ::SceTriggerUtilEventParamDaily
@@ -36,24 +36,25 @@ typedef enum SceTriggerUtilDays {
 /**
  * Errors
  */
-#define SCE_TRIGGER_UTIL_ERROR_BUSY                       0x80103600
-#define SCE_TRIGGER_UTIL_ERROR_NOT_FOUND_USER             0x80103611
-#define SCE_TRIGGER_UTIL_ERROR_NOT_FOUND_SYSTEM           0x80103614
-#define SCE_TRIGGER_UTIL_ERROR_NOT_REGISTERED             0x80103621
-#define SCE_TRIGGER_UTIL_ERROR_EVENT_TYPE_MISMATCH        0x80103624
-#define SCE_TRIGGER_UTIL_ERROR_INVALID_ARG                0x80103660
+#define SCE_TRIGGER_UTIL_ERROR_BUSY                       0x80103601
+#define SCE_TRIGGER_UTIL_ERROR_NOT_FOUND_USER             0x80103610
+#define SCE_TRIGGER_UTIL_ERROR_NOT_FOUND_SYSTEM           0x80103612
+#define SCE_TRIGGER_UTIL_ERROR_NOT_REGISTERED             0x80103620
+#define SCE_TRIGGER_UTIL_ERROR_EVENT_TYPE_MISMATCH        0x80103623
+#define SCE_TRIGGER_UTIL_ERROR_INVALID_ARG                0x80103650
 
 typedef struct SceTriggerUtilEventParamDaily { // size is 0x50
 	SceUInt32 ver;
+	SceInt32 triggerTime;                      // POSIX time
 	SceInt16 extraParam1;                      // set to 1
 	SceInt16 extraParam2;                      // set to 0
-	SceInt32 triggerTime;                      // POSIX time
 	SceUInt16 repeatDays;                      // bitwise
 	SceChar8 reserved[0x40];
 } SceTriggerUtilEventParamDaily;
 
-typedef struct SceTriggerUtilEventParamOneTime { // size is 0x54
+typedef struct SceTriggerUtilEventParamOneTime { // size is 0x58
 	SceUInt32 ver;
+	SceInt32 a2;
 	SceRtcTick triggerTime;                      // SceRtcTick, UTC
 	SceUInt8 extraParam1;                        // set to 1
 	SceUInt8 extraParam2;                        // set to 0
@@ -136,36 +137,40 @@ int sceTriggerUtilGetAutoStartStatus(int* status, int a2, int a3); //SceTriggerU
  *
  * @param[in] eventId - ID number of event to get information for.
  * @param[out] triggerTime - SceRtcTick, UTC
+ * @param[out] unk_ptr - Unknown
  * @param[in] a4 - Unknown, set to 0.
  * @param[in] a5 - Unknown, set to 0.
  *
  * @return 0 on success, <0 otherwise.
  */
-int sceTriggerUtilGetOneTimeEventInfo(int eventId, SceRtcTick* triggerTime, int a4, int a5); //SceTriggerUtil_912434E0
+int sceTriggerUtilGetOneTimeEventInfo(int eventId, SceRtcTick* triggerTime, int* unk_ptr, int a4, int a5); //SceTriggerUtil_912434E0
 
 /**
  * Get daily event info for caller application
  *
  * @param[in] eventId - ID number of event to get information for.
+ * @param[out] unk_ptr - Unknown
  * @param[out] param - event parameters.
+ * @param[out] timeUntilEvent - POSIX time until next event trigger
  * @param[in] a5 - Unknown, set to 0.
  * @param[in] a6 - Unknown, set to 0.
  *
  * @return 0 on success, <0 otherwise.
  */
-int sceTriggerUtilGetDailyEventInfo(int eventId, SceTriggerUtilEventParamDaily* param, int a5, int a6); //SceTriggerUtil_DF3ED08E
+int sceTriggerUtilGetDailyEventInfo(int eventId, int* unk_ptr, SceTriggerUtilEventParamDaily* param, SceInt32* timeUntilEvent, int a5, int a6); //SceTriggerUtil_DF3ED08E
 
 /**
  * Get info for user application that has registered sceTriggerUtil events
  *
  * @param[in] titleid - title ID of application to get info for.
+ * @param[out] unk_ptr - Unknown
  * @param[out] appInfo - application information
  * @param[in] a4 - Unknown, set to 0.
  * @param[in] a5 - Unknown, set to 0.
  *
  * @return 0 on success, <0 otherwise.
  */
-int sceTriggerUtilGetUserAppInfo(const char* titleid, SceTriggerUtilUserAppInfo* appInfo, int a4, int a5); //SceTriggerUtil_0ACE6552
+int sceTriggerUtilGetUserAppInfo(const char* titleid, int* unk_ptr, SceTriggerUtilUserAppInfo* appInfo, int a4, int a5); //SceTriggerUtil_0ACE6552
 
 /**
  * Get list of user applications that has registered sceTriggerUtil events. List contains null-separated title IDs
@@ -181,13 +186,14 @@ int sceTriggerUtilGetRegisteredUserTitleIdList(char* titleIdBuffer, int numOfIds
  * Get info for system application that has registered sceTriggerUtil events
  *
  * @param[in] titleid - title ID of application to get info for.
+ * @param[out] unk_ptr - Unknown
  * @param[out] appInfo - application information
  * @param[in] a4 - Unknown, set to 0.
  * @param[in] a5 - Unknown, set to 0.
  *
  * @return 0 on success, <0 otherwise.
  */
-int sceTriggerUtilGetSystemAppInfo(const char* titleid, SceTriggerUtilSystemAppInfo* appInfo, int a4, int a5); //SceTriggerUtil_D659CCB0
+int sceTriggerUtilGetSystemAppInfo(const char* titleid, int* unk_ptr, SceTriggerUtilSystemAppInfo* appInfo, int a4, int a5); //SceTriggerUtil_D659CCB0
 
 /**
  * Get list of system applications that has registered sceTriggerUtil events. List contains null-separated fake title IDs
