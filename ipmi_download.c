@@ -105,7 +105,6 @@ int main()
 	sce_paf_memset(&connOpt, 0, sizeof(sce::Download::ConnectionOpt));
 	connOpt.budgetType = conf.msgPipeBudgetType;
 
-	int ret2 = 0;
 	ret = client->connect(&connOpt, sizeof(sce::Download::ConnectionOpt), &ret2);
 	sceClibPrintf("client->connect: 0x%X\n", ret);
 	sceClibPrintf("client->connect ret2: 0x%X\n", ret2);
