@@ -8,6 +8,7 @@
 - SceTriggerUtil
 - SceBgAppUtil
 - SceIniFileProcessor
+- SceAudiocodec
 
 ### Usage:
 
